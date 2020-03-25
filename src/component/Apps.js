@@ -41,7 +41,7 @@ class Apps extends React.Component{
             );
         });
 
-        const newsHead =  newsFeed.length > 0 ? <h2>News</h2> : '';
+        const newsHead =  newsFeed.length > 0 ? <h2>News</h2> : <h3>Select region to show latest news</h3>;
         
 
         return (
@@ -66,7 +66,7 @@ class Apps extends React.Component{
     };
 
     getNews = async () => {
-        const news = await Axios.get('http://newsapi.org/v2/everything?' +
+        const news = await Axios.get('https://cors-anywhere.herokuapp.com/http://newsapi.org/v2/everything?' +
         'q=coronavirus ' + this.state.selCountry + '&' +
         'apiKey=048c336a18af41a4af76ba53e7a15efb');
 

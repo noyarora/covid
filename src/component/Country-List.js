@@ -29,9 +29,9 @@ class CountryList extends React.Component {
             <Fragment>
                 <div className="ui message" onClick={() => this.setState({isBoxVisible: true})}>
                     <div className="header">
-                        {this.props.statistics.selCountry !== '' ? 'Global Status' : this.props.statistics.selCountry}
+                        {!this.props.statistics.selCountry ? 'Global Status' : this.props.statistics.selCountry}
                     </div>
-                    <div>
+                    <div className="total-count-button">
                         <span className="count">{this.state.total}</span>
                         <i>></i>
                     </div>

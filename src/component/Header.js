@@ -4,7 +4,7 @@ const Header = () => {
     return (
         <header>
             <h2 className="ui header">
-                Patrick
+                Covid-19 Tracker
             </h2>
         </header>
     );

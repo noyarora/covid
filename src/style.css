@@ -35,8 +35,46 @@
     transform: rotate(90deg);
     display: inline-flex;
     font-style: normal;
+    font-size: 1.5em;
 }
 
 header {
     margin: 20px 0;
+}
+
+.ui.statistic>.value, .ui.statistics .statistic>.value {
+    font-size: 1.6rem !important;
+}
+
+.ui.two.statistics .statistic {
+    margin: 2em 0;
+}
+
+.ui.list {
+    font-size: 1.2em;
+    background: rgba(250, 247, 247);
+}
+
+.ui.divided.list>.item {
+    padding: 7px 0;
+}
+
+.ui.items>.item>.content>.header:not(.ui) {
+    font-size: 0.8em;
+}
+
+.ui.text.container {
+    margin-bottom: 20px;
+}
+
+.stats {
+    padding-bottom: 40px;
+}
+
+.total-count-button {
+    display: flex;
+}
+
+body {
+    background: rgba(250, 247, 247, 0.87);
 }
