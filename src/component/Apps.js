@@ -11,7 +11,7 @@ import News from './News';
 
 class Apps extends React.Component{
 
-    state = {total: '', active: '', recover: '', fatal: '', today: '', countryList : [], selCountry: ''};
+    state = {total: '', active: '', recover: '', fatal: '', today: '', countryList : [], selCountry: '', articles: []};
 
     componentDidMount = async () => {
         const stats = await covid.get('/all');
@@ -33,6 +33,17 @@ class Apps extends React.Component{
     }
 
     render() {
+        const newsFeed = this.state.articles.map(res => {
+            return (
+                <div key={res.title} class="ui unstackable items">
+                    <News feed={res}></News>
+                </div>
+            );
+        });
+
+        const newsHead =  newsFeed.length > 0 ? <h2>News</h2> : '';
+        
+
         return (
             <div className="ui raised very padded text container">
                 <Header></Header>
@@ -40,7 +51,8 @@ class Apps extends React.Component{
                 <div className="stats">
                     <Cards cases={this.state}></Cards>
                 </div>
-                <News></News>
+                {newsHead}
+                {newsFeed}                
             </div>
         );
     }
@@ -58,7 +70,9 @@ class Apps extends React.Component{
         'q=coronavirus ' + this.state.selCountry + '&' +
         'apiKey=048c336a18af41a4af76ba53e7a15efb');
 
-        console.log(news);
+        const articles = news.data.articles.slice(0, 5);
+        this.setState({articles: articles});
+        console.log(articles);
     };
 };
 
