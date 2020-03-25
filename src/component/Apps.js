@@ -9,7 +9,7 @@ import covid from '../api/covid';
 import Axios from 'axios';
 import News from './News';
 
-class App extends React.Component{
+class Apps extends React.Component{
 
     state = {total: '', active: '', recover: '', fatal: '', today: '', countryList : [], selCountry: ''};
 
@@ -62,4 +62,4 @@ class App extends React.Component{
     };
 };
 
-export default App;
+export default Apps;
