@@ -9,6 +9,7 @@
     margin: 0 !important;
     padding: 1em !important;
     z-index: 9999;
+    overflow: auto;
 }
 
 .countries.hidden {

@@ -42,7 +42,7 @@ class CountryList extends React.Component {
                             <div className="total-count close" onClick={() => this.setState({isBoxVisible: false})}>x</div>
                         </div>
                         <div className="content">
-                            &nbsp;
+                            Select a region
                         </div>
                     </div>
                     {countryList}

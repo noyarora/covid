@@ -21,7 +21,7 @@ class Cards extends React.Component {
                 </div>
                 <div className="ui yellow statistic">
                     <div className="value">
-                    {covidData.today == '' || !covidData.today ? 'NA' : covidData.today}
+                    {covidData.today !== '' || covidData.today === 0 ? covidData.today : 'NA'}
                     </div>
                     <div className="label">
                     Cases Today

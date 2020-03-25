@@ -51,6 +51,7 @@ class Apps extends React.Component{
                 <div className="stats">
                     <Cards cases={this.state}></Cards>
                 </div>
+                <hr></hr>
                 {newsHead}
                 {newsFeed}                
             </div>
