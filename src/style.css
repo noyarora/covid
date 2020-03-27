@@ -40,7 +40,17 @@
 }
 
 header {
-    margin: 20px 0;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ui.toggle.checkbox {
+    margin-top: 4px;
+}
+
+.ui.items>.item .extra {
+    font-size: 0.7em;
 }
 
 .ui.statistic>.value, .ui.statistics .statistic>.value {
@@ -65,7 +75,10 @@ header {
 }
 
 .ui.text.container {
-    margin-bottom: 20px;
+    margin: 0 !important;
+    padding: 20px;
+    min-height: 100vh;
+    background: rgba(250, 247, 247, 0.87);
 }
 
 .stats {
@@ -76,6 +89,23 @@ header {
     display: flex;
 }
 
-body {
-    background: rgba(250, 247, 247, 0.87);
+.darkMode h2, .darkMode header h2, .darkMode .ui.toggle.checkbox input:checked~label, .darkMode .statistic .label, .darkMode .ui.items>.item>.content>a.header, .darkMode .ui.divided.list>.item, .darkMode h3 {
+    color: rgba(255, 255, 255, 0.87) !important;
+}
+
+.ui.text.container.darkMode, .darkMode .ui.list {
+    background: #1d1d1d;
+}
+
+.darkMode .ui.message {
+    background: #333333;
+    color: rgba(255, 255, 255, 0.87) !important;
+}
+
+.darkMode .ui.items>.item .extra {
+    color: rgba(249, 247, 247, 0.6);
+}
+
+.darkMode .ui.divided.list>.item {
+    border-top-color:  rgba(34,36,38, 0.8);
 }

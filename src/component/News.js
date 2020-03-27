@@ -9,6 +9,9 @@ class News extends React.Component{
                 </div>
                 <div class="content">
                     <a href={this.props.feed.url} target="_blank" class="header">{this.props.feed.title}</a>
+                    <div class="extra">
+                        {this.props.feed.author}
+                    </div>
                 </div>
             </div>
     );

@@ -11,7 +11,7 @@ class Cards extends React.Component {
         }
         return (
             <div className="ui two statistics">
-                <div className="ui red statistic">
+                <div className="ui brown statistic">
                     <div className="value">
                     {covidData.active}
                     </div>
@@ -35,7 +35,7 @@ class Cards extends React.Component {
                     Recovered
                     </div>
                 </div>
-                <div className="ui statistic">
+                <div className="ui red statistic">
                     <div className="value">
                     {covidData.fatal}
                     </div>
