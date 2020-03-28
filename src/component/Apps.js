@@ -68,15 +68,17 @@ class Apps extends React.Component{
                     <button className="mini ui button basic fluid" onClick={this.getGlobalStats}>
                         Show Global Statistics
                     </button>
+                    <p className="note">Note: Data is updated through opensource api. Actual count may vary</p>
+
                     <h4 className="ui horizontal divider header">
                         News
                     </h4>
                     {newsFeed.length > 0 ? newsFeed : 'No news found for selected region.'} 
                     <div className="ui fitted divider"></div>  
-                    <Footer></Footer>          
-                </div>
-                <div className={`loader ${this.state.showLoader ? '' : 'hideLoader'}`}>
+                    <Footer></Footer>   
+                    <div className={`loader ${this.state.showLoader ? '' : 'hideLoader'}`}>
                     <div className="ui active centered inline loader"></div>
+                    </div>       
                 </div>
             </Fragment>
         );
@@ -99,7 +101,7 @@ class Apps extends React.Component{
             this.setState({articles: articles});
         }, error => console.log(error));
 
-        this.setState({showLoader: false});
+        this.setState({showLoader: true});
 
     };
 

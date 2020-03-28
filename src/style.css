@@ -1,6 +1,6 @@
 .countries {
     display: block;
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
@@ -89,11 +89,11 @@ header {
     display: flex;
 }
 
-.darkMode h2, .darkMode .mini.button, .darkMode .ui.header, .darkMode .footer, .darkMode header h2, .darkMode .ui.toggle.checkbox input:checked~label, .darkMode .statistic .label, .darkMode .ui.items>.item>.content>a.header, .darkMode .ui.divided.list>.item, .darkMode h3 {
+.darkMode h2, .darkMode .note, .darkMode .mini.button, .darkMode .ui.header, .darkMode .footer, .darkMode header h2, .darkMode .ui.toggle.checkbox input:checked~label, .darkMode .statistic .label, .darkMode .ui.items>.item>.content>a.header, .darkMode .ui.divided.list>.item, .darkMode h3 {
     color: rgba(255, 255, 255, 0.87) !important;
 }
 
-.ui.text.container.darkMode, .darkMode .ui.list {
+.ui.text.container.darkMode, .darkMode .ui.list, .darkMode .loader {
     background: #1d1d1d;
 }
 
@@ -110,8 +110,13 @@ header {
     border-top-color:  rgba(34,36,38, 0.8);
 }
 
+.note {
+    font-size: 0.5em;
+    margin-top: 5px;
+}
+
 .loader {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     width: 100%;
@@ -130,6 +135,7 @@ header {
     justify-content: space-between;
     padding-top: 10px;
     font-size: 0.8em;
+    align-items: center;
 }
 
 .footer p {
