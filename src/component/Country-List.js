@@ -3,8 +3,6 @@ import Country from './Countries'
 
 class CountryList extends React.Component {
 
-    
-
     constructor(props){
         super(props);
         this.state = {isBoxVisible: false, total: props.statistics.total}

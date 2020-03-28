@@ -4,7 +4,6 @@ class Cards extends React.Component {
 
     render () {
         const covidData = this.props.cases;
-        console.log(covidData);
 
         if(covidData.total == "") {
             return null

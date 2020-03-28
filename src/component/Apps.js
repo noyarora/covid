@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Cards from './Cards';
 import CountryList from './Country-List';
 import Header from './Header';
+import Footer from './Footer';
 
 import '../style.css';
 
@@ -20,15 +21,16 @@ class Apps extends React.Component{
         countryList : [], 
         selCountry: '', 
         articles: [],
-        darkTheme: false
+        darkTheme: false,
+        showLoader: true
     };
 
     componentDidMount = async () => {
-        const stats = await covid.get('/all');
-        const caseData = stats.data;
-        this.setState({total: caseData.cases, active: (caseData.cases - caseData.recovered - caseData.deaths), recover: caseData.recovered, fatal: caseData.deaths});
-
+        this.getGlobalStats();
         //get coumtries
+
+        const currentCountryIp =  await Axios.get('https://ipapi.co/json/');
+        this.updateStats(currentCountryIp.data.country_name);
         let countries = await covid.get('/countries');
         const currentCountry = countries.data.filter(res => res.country === 'India');
         const currentCountryData = [{country: currentCountry[0].country, total: currentCountry[0].cases}];
@@ -47,15 +49,13 @@ class Apps extends React.Component{
         if(this.state.articles.length > 0) {
         newsFeed = this.state.articles.map(res => {
             return (
-                <div key={res.title} class="ui unstackable items">
+                <div key={res.title} className="ui unstackable items">
                     <News feed={res}></News>
                 </div>
             );
         });
         }
 
-        const newsHead =  newsFeed.length > 0 ? <h2>News</h2> : <h3>Select region to show latest news</h3>;
-        
 
         return (
             <Fragment>
@@ -65,9 +65,18 @@ class Apps extends React.Component{
                     <div className="stats">
                         <Cards cases={this.state}></Cards>
                     </div>
-                    <hr></hr>
-                    {newsHead}
-                    {newsFeed}             
+                    <button className="mini ui button basic fluid" onClick={this.getGlobalStats}>
+                        Show Global Statistics
+                    </button>
+                    <h4 className="ui horizontal divider header">
+                        News
+                    </h4>
+                    {newsFeed.length > 0 ? newsFeed : 'No news found for selected region.'} 
+                    <div className="ui fitted divider"></div>  
+                    <Footer></Footer>          
+                </div>
+                <div className={`loader ${this.state.showLoader ? '' : 'hideLoader'}`}>
+                    <div className="ui active centered inline loader"></div>
                 </div>
             </Fragment>
         );
@@ -76,19 +85,30 @@ class Apps extends React.Component{
     updateStats = async (e) => {
         const countryStats = await covid.get('/countries/' + e);
         const countryStatsData = countryStats.data;
-        this.setState({total: countryStatsData.cases, active: (countryStatsData.cases - countryStatsData.recovered - countryStatsData.deaths), recover: countryStatsData.recovered, fatal: countryStatsData.deaths, today: countryStatsData.todayCases, selCountry: e});
+        this.setState({total: countryStatsData.cases, active: (countryStatsData.cases - countryStatsData.recovered - countryStatsData.deaths), recover: countryStatsData.recovered, fatal: countryStatsData.deaths, today: countryStatsData.todayCases, selCountry: e, showLoader: true});
 
         this.getNews();
     };
 
     getNews = async () => {
-        const news = await Axios.get('https://cors-anywhere.herokuapp.com/http://newsapi.org/v2/top-headlines?' +
+        await Axios.get('https://cors-anywhere.herokuapp.com/http://newsapi.org/v2/top-headlines?' +
         'q=coronavirus ' + this.state.selCountry + '&' +
-        'apiKey=048c336a18af41a4af76ba53e7a15efb');
+        'apiKey=048c336a18af41a4af76ba53e7a15efb').then(res => {
+            const news = res;
+            const articles = news.data.articles.slice(0, 5);
+            this.setState({articles: articles});
+        }, error => console.log(error));
 
-        const articles = news.data.articles.slice(0, 5);
-        this.setState({articles: articles});
-        console.log(articles);
+        this.setState({showLoader: false});
+
+    };
+
+    getGlobalStats = async () => {
+        const stats = await covid.get('/all');
+        const caseData = stats.data;
+        this.setState({total: caseData.cases, active: (caseData.cases - caseData.recovered - caseData.deaths), recover: caseData.recovered, fatal: caseData.deaths, today: '', selCountry: '', showLoader: true});
+    
+        this.getNews();
     };
 
     changeTheme = (e) => {
