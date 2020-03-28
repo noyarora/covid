@@ -101,7 +101,7 @@ class Apps extends React.Component{
             this.setState({articles: articles});
         }, error => console.log(error));
 
-        this.setState({showLoader: true});
+        this.setState({showLoader: false});
 
     };
 
