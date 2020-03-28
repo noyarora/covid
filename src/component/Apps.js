@@ -73,7 +73,7 @@ class Apps extends React.Component{
                     <h4 className="ui horizontal divider header">
                         News
                     </h4>
-                    {newsFeed.length > 0 ? newsFeed : 'No news found for selected region.'} 
+                    {newsFeed.length > 0 ? newsFeed : <div className="no-news">No news found for selected region.</div>} 
                     <div className="ui fitted divider"></div>  
                     <Footer></Footer>   
                     <div className={`loader ${this.state.showLoader ? '' : 'hideLoader'}`}>
