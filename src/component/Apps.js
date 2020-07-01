@@ -61,20 +61,25 @@ class Apps extends React.Component{
             <Fragment>
                 <div className={`ui raised very padded text container ${this.state.darkTheme ? 'darkMode' : ''}`}>
                     <Header theme={this.changeTheme}></Header>
-                    <CountryList countrySelect={this.updateStats} statistics={this.state}></CountryList>
-                    <div className="stats">
-                        <Cards cases={this.state}></Cards>
-                    </div>
-                    <button className="mini ui button basic fluid" onClick={this.getGlobalStats}>
-                        Show Global Statistics
-                    </button>
-                    <p className="note">Note: Data is updated through opensource api. Actual count may vary</p>
-
-                    <h4 className="ui horizontal divider header">
-                        News
-                    </h4>
-                    {newsFeed.length > 0 ? newsFeed : <div className="no-news">No news found for selected region.</div>} 
-                    <div className="ui fitted divider"></div>  
+                    <div className="ui two column doubling stackable grid">
+                        <div className="column">
+                            <CountryList countrySelect={this.updateStats} statistics={this.state}></CountryList>
+                            <div className="stats">
+                                <Cards cases={this.state}></Cards>
+                            </div>
+                            <button className="ui button basic" onClick={this.getGlobalStats}>
+                                Show Global Statistics
+                            </button>
+                            <p className="note">Note: Data is updated through opensource api. Actual count may vary</p>
+                        </div>
+                        <div className="column">
+                            <h4 className="ui horizontal divider header">
+                            News
+                        </h4>
+                        {newsFeed.length > 0 ? newsFeed : <div className="no-news">No news found for selected region.</div>} 
+                        <div className="ui fitted divider"></div> 
+                        </div>
+                    </div>                     
                     <Footer></Footer>   
                     <div className={`loader ${this.state.showLoader ? '' : 'hideLoader'}`}>
                     <div className="ui active centered inline loader"></div>
@@ -93,7 +98,7 @@ class Apps extends React.Component{
     };
 
     getNews = async () => {
-        await Axios.get('https://cors-anywhere.herokuapp.com/http://newsapi.org/v2/top-headlines?' +
+        await Axios.get('https://cors-anywhere.herokuapp.com/http://newsapi.org/v2/everything?' +
         'q=coronavirus ' + this.state.selCountry + '&' +
         'apiKey=048c336a18af41a4af76ba53e7a15efb').then(res => {
             const news = res;
