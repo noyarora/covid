@@ -81,7 +81,7 @@ class Apps extends React.Component{
                         </div>
                     </div>                     
                     <Footer></Footer>   
-                    <div className={`loader ${this.state.showLoader ? '' : 'hideLoader'}`}>
+                    <div className={`loader ${this.state.showLoader ? '':'hideLoader'}`}>
                     <div className="ui active centered inline loader"></div>
                     </div>       
                 </div>
